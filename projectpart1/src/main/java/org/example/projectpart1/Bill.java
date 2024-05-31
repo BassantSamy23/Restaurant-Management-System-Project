@@ -15,16 +15,17 @@ import java.util.Date;
 public class Bill {
 
     /** The incremental number assigned to each bill. */
-    static int bill_incremental = 1;
+    static int billIncremental = 1;
 
     /** The unique identifier of the bill. */
-    static int billNo;
+     int billNo;
+
 
     /** The ID of the customer associated with the bill. */
     private int customerId;
 
     /** The total price of the items included in the bill. */
-    private Double totalPrice;
+    private Double totalPrice=0.0;
 
     /** The list of items included in the bill. */
     ArrayList<String> items;
@@ -43,8 +44,8 @@ public class Bill {
      * Constructs a bill with a pending status and assigns it a unique bill ID.
      */
     public Bill() {
-        billNo = bill_incremental;
-        bill_incremental++;
+        billNo = billIncremental;
+        billIncremental++;
         set_status(OrderStatus.IN_PROGRESS);
     }
 
@@ -99,8 +100,10 @@ public class Bill {
      * @param status The status of the bill.
      */
     public void print_bill(int billNo, int customerId, Double totalPrice, Date date, OrderStatus status) {
-        System.out.println("Bill No: " + billNo + "Customer ID: " + customerId + "Total Price: " + totalPrice + "Date: " + date
-                + "Status: " + status);
+        pay(billNo);
+        System.out.println( "Customer ID: " + customerId + " Total Price: " + totalPrice + " Date: " + date
+                + " Status: " + status);
+        System.out.println("Bill No: " + billNo + " is paid successfully.");
     }
 
     /**
